@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>首页</title>
+</head>
+<body>
+  <div>
+    <form th:action="@{/config/install}" method="post">
+      <label>
+        服务器ip
+        <input type="text" name="ip">
+      </label>
+
+      <label>
+        服务器用户名
+        <input type="text" name="username">
+      </label>
+
+      <label>
+        服务器密码
+        <input type="password" name="password">
+      </label>
+
+      <label>
+        数据库用户名
+        <input type="text" name="dbUserName">
+      </label>
+
+      <label>
+        数据库密码
+        <input type="text" name="dbPassword">
+      </label>
+
+      <input type="submit" value="提交">
+    </form>
+  </div>
+</body>
+</html>
