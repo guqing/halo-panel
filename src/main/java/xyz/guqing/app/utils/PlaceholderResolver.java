@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 /**
  * 占位符解析器
+ *
  * @author guqing
  * @date 2020-01-31 17:08
  */
@@ -37,7 +38,8 @@ public class PlaceholderResolver {
     private String placeholderSuffix = DEFAULT_PLACEHOLDER_SUFFIX;
 
 
-    private PlaceholderResolver(){}
+    private PlaceholderResolver() {
+    }
 
     private PlaceholderResolver(String placeholderPrefix, String placeholderSuffix) {
         this.placeholderPrefix = placeholderPrefix;
@@ -62,7 +64,7 @@ public class PlaceholderResolver {
      * 返回 category:1:product:2<br/>
      *
      * @param content 要解析的带有占位符的模板字符串
-     * @param values   按照模板占位符索引位置设置对应的值
+     * @param values  按照模板占位符索引位置设置对应的值
      */
     public String resolve(String content, String... values) {
         int start = content.indexOf(this.placeholderPrefix);
@@ -88,7 +90,7 @@ public class PlaceholderResolver {
      * 返回 category:1:product:2<br/>
      *
      * @param content 要解析的带有占位符的模板字符串
-     * @param values   按照模板占位符索引位置设置对应的值
+     * @param values  按照模板占位符索引位置设置对应的值
      */
     public String resolve(String content, Object[] values) {
         return resolve(content, Stream.of(values).map(String::valueOf).toArray(String[]::new));
@@ -96,8 +98,9 @@ public class PlaceholderResolver {
 
     /**
      * 根据替换规则来替换指定模板中的占位符值
-     * @param content  要解析的字符串
-     * @param rule  解析规则回调
+     *
+     * @param content 要解析的字符串
+     * @param rule    解析规则回调
      * @return
      */
     public String resolveByRule(String content, Function<String, String> rule) {
@@ -121,12 +124,12 @@ public class PlaceholderResolver {
     /**
      * 替换模板中占位符内容，占位符的内容即为map key对应的值，key为占位符中的内容。<br/><br/>
      * 如：content = product:${id}:detail:${did}<br/>
-     *    valueMap = id -> 1; pid -> 2<br/>
-     *    经过解析返回 product:1:detail:2<br/>
+     * valueMap = id -> 1; pid -> 2<br/>
+     * 经过解析返回 product:1:detail:2<br/>
      *
      * @param content  模板内容。
      * @param valueMap 值映射
-     * @return   替换完成后的字符串。
+     * @return 替换完成后的字符串。
      */
     public String resolveByMap(String content, final Map<String, Object> valueMap) {
         return resolveByRule(content, placeholderValue -> String.valueOf(valueMap.get(placeholderValue)));
@@ -142,15 +145,15 @@ public class PlaceholderResolver {
     /**
      * 根据对象中字段路径(即类似js访问对象属性值)替换模板中的占位符 <br/><br/>
      * 如 content = product:${id}:detail:${detail.id} <br/>
-     *    obj = Product.builder().id(1).detail(Detail.builder().id(2).build()).build(); <br/>
-     *    经过解析返回 product:1:detail:2 <br/>
+     * obj = Product.builder().id(1).detail(Detail.builder().id(2).build()).build(); <br/>
+     * 经过解析返回 product:1:detail:2 <br/>
      *
-     * @param content  要解析的内容
-     * @param obj   填充解析内容的对象(如果是基本类型，则所有占位符替换为相同的值)
+     * @param content 要解析的内容
+     * @param obj     填充解析内容的对象(如果是基本类型，则所有占位符替换为相同的值)
      */
     public String resolveByObject(String content, final Object obj) {
         if (obj instanceof Map) {
-            return resolveByMap(content, (Map)obj);
+            return resolveByMap(content, (Map) obj);
         }
         return resolveByRule(content, placeholderValue -> String.valueOf(ReflectionUtils.getValueByFieldPath(obj, placeholderValue)));
     }

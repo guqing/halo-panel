@@ -16,15 +16,14 @@ import java.util.HashMap;
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "env.strategy")
 public class EnvironmentAlias {
-    private HashMap<String, String> aliasMap;
-
     public static final String DEFAULT_STRATEGY_NAME = "defaultStrategy";
+    private HashMap<String, String> aliasMap;
 
     public HashMap<String, String> getAliasMap() {
         return aliasMap;
     }
 
-    public void setAliasMap(HashMap<String, String > aliasMap) {
+    public void setAliasMap(HashMap<String, String> aliasMap) {
         this.aliasMap = aliasMap;
     }
 

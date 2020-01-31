@@ -3,17 +3,13 @@ package xyz.guqing.app.controller;
 import cn.hutool.extra.ssh.JschUtil;
 import com.jcraft.jsch.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 import xyz.guqing.app.model.entity.AuthInfo;
 import xyz.guqing.app.model.vo.InstallVo;
 import xyz.guqing.app.service.ConfigService;
-
-import java.nio.charset.StandardCharsets;
 
 /**
  * @author guqing

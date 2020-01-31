@@ -6,6 +6,7 @@ import xyz.guqing.app.service.EnvironmentStrategy;
 
 /**
  * Ubuntu系统下的环境安装及配置策略
+ *
  * @author guqing
  * @date 2020-01-31 15:21
  */

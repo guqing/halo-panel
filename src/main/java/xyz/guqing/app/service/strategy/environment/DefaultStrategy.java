@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * CentOS系统下的环境策略,作为默认环境策略
+ *
  * @author guqing
  * @date 2020-01-31 15:17
  */
@@ -22,7 +23,7 @@ public class DefaultStrategy implements EnvironmentStrategy {
 
     @Override
     public String installAndConfigDocker(Session session) {
-        String result = exec(session,"yum install docker-ce docker-ce-cli containerd.io") +
+        String result = exec(session, "yum install docker-ce docker-ce-cli containerd.io") +
                 "<br/>" +
                 exec(session, "systemctl start docker") +
                 "<br/>" +

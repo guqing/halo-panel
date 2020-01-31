@@ -27,11 +27,11 @@ public class ConfigService {
         EnvironmentStrategy holder = environmentStrategyHolder.getBy(environment.getSystemType());
         String java = holder.installAndConfigJava(session);
 
-        if(Objects.equals("nginx", environment.getProxyTool())) {
+        if (Objects.equals("nginx", environment.getProxyTool())) {
             String nginx = holder.installAndConfigNginx(session);
         }
 
-        if(Objects.equals("caddy", environment.getProxyTool())) {
+        if (Objects.equals("caddy", environment.getProxyTool())) {
             String caddy = holder.installAndConfigCaddy(session);
         }
 

@@ -78,7 +78,7 @@ public final class ReflectionUtils {
      * @param clazz 字段所属类型
      * @param name  字段名
      * @param type  field类型
-     * @return      Field对象
+     * @return Field对象
      */
     public static Field getField(Class<?> clazz, String name, Class<?> type) {
         Assert.notNull(clazz, "clazz不能为空！");
@@ -97,9 +97,9 @@ public final class ReflectionUtils {
     /**
      * 获取字段值
      *
-     * @param field    字段
-     * @param target  字段所属实例对象
-     * @return        字段值
+     * @param field  字段
+     * @param target 字段所属实例对象
+     * @return 字段值
      */
     public static Object getFieldValue(Field field, Object target) {
         makeAccessible(field);
@@ -115,8 +115,8 @@ public final class ReflectionUtils {
      * 获取对象中指定field值
      *
      * @param obj       对象
-     * @param fieldName  字段名
-     * @return          字段值
+     * @param fieldName 字段名
+     * @return 字段值
      */
     public static Object getFieldValue(Object obj, String fieldName) {
         Assert.notNull(obj, "obj不能为空!");
