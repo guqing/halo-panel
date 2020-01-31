@@ -1,5 +1,7 @@
 package xyz.guqing.app.service.strategy.environment;
 
+import com.jcraft.jsch.Session;
+import org.springframework.stereotype.Component;
 import xyz.guqing.app.service.EnvironmentStrategy;
 
 /**
@@ -7,29 +9,30 @@ import xyz.guqing.app.service.EnvironmentStrategy;
  * @author guqing
  * @date 2020-01-31 15:21
  */
+@Component
 public class UbuntuStrategy implements EnvironmentStrategy {
     @Override
-    public String installAndConfigJava() {
+    public String installAndConfigJava(Session session) {
         return null;
     }
 
     @Override
-    public String installAndConfigDocker() {
+    public String installAndConfigDocker(Session session) {
         return null;
     }
 
     @Override
-    public String installAndConfigMysql() {
+    public String installAndConfigMysql(Session session) {
         return null;
     }
 
     @Override
-    public String installAndConfigNginx() {
+    public String installAndConfigNginx(Session session) {
         return null;
     }
 
     @Override
-    public String installAndConfigCaddy() {
+    public String installAndConfigCaddy(Session session) {
         return null;
     }
 }

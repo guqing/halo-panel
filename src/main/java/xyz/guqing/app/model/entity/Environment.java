@@ -4,12 +4,11 @@ import lombok.Data;
 
 /**
  * @author guqing
- * @date 2020-01-31 14:00
+ * @date 2020-01-31 16:48
  */
 @Data
-public class AuthInfo {
-    private String ip;
-    private String username;
-    private String password;
+public class Environment {
     private String systemType = "centos";
+    private String databaseType = "h2";
+    private String proxyTool = "caddy";
 }

@@ -2,11 +2,16 @@ package xyz.guqing.app.controller;
 
 import cn.hutool.extra.ssh.JschUtil;
 import com.jcraft.jsch.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import xyz.guqing.app.model.entity.AuthInfo;
+import xyz.guqing.app.model.vo.InstallVo;
+import xyz.guqing.app.service.ConfigService;
 
 import java.nio.charset.StandardCharsets;
 
@@ -14,21 +19,26 @@ import java.nio.charset.StandardCharsets;
  * @author guqing
  * @date 2020-01-31 13:57
  */
-@Controller
+@RestController
+@CrossOrigin
 @RequestMapping("/config")
 public class ConfigController {
+    private final ConfigService configService;
+
+    @Autowired
+    public ConfigController(ConfigService configService) {
+        this.configService = configService;
+    }
 
     @PostMapping("/install")
-    public ModelAndView install(AuthInfo userInfo) {
+    public String install(InstallVo installVo) {
+        AuthInfo authInfo = installVo.getAuthInfo();
         //新建会话
-        Session session = JschUtil.getSession(userInfo.getIp(), 22, userInfo.getUsername(), userInfo.getPassword());
-        String result = JschUtil.exec(session, installJava(), StandardCharsets.UTF_8);
+        Session session = JschUtil.getSession(authInfo.getIp(), 22, authInfo.getUsername(), authInfo.getPassword());
+        String result = configService.install(session, installVo);
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("index");
-        modelAndView.addObject("log", result);
         System.out.println(result);
-        return modelAndView;
+        return result;
     }
 
     private String installJava() {
